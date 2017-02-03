@@ -42,7 +42,3 @@
 			value="" />
 	</div>
 </div>
-
-<div>
-
-</div>
