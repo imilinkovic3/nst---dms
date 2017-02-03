@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="nst@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="nst">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="bootcamp"/>
+    <schema id="4" parent="1" name="februar2016"/>
+    <schema id="5" parent="1" name="hibernatetest"/>
+    <schema id="6" parent="1" name="information_schema"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="performance_schema"/>
+    <schema id="9" parent="1" name="phpmyadmin"/>
+    <schema id="10" parent="1" name="test"/>
+    <table id="11" parent="2" name="company"/>
+    <table id="12" parent="2" name="role"/>
+    <table id="13" parent="2" name="user"/>
+    <column id="14" parent="11" name="pib">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="11" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="16" parent="11" name="city">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="17" parent="11" name="phone">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="18" parent="11" name="country">
+      <Position>5</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="19" parent="11" name="address">
+      <Position>6</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="20" parent="11" name="postalcode">
+      <Position>7</Position>
+      <DataType>bigint(10)|0</DataType>
+    </column>
+    <column id="21" parent="11" name="fax">
+      <Position>8</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <key id="22" parent="11" name="PRIMARY">
+      <ColNames>pib</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="23" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="12" name="name">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="25" parent="12" name="title">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <key id="26" parent="12" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="27" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="28" parent="13" name="firstname">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="29" parent="13" name="lastname">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="30" parent="13" name="company">
+      <Position>4</Position>
+      <DataType>bigint(30)|0</DataType>
+    </column>
+    <column id="31" parent="13" name="email">
+      <Position>5</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="32" parent="13" name="username">
+      <Position>6</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="33" parent="13" name="password">
+      <Position>7</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="34" parent="13" name="role">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="35" parent="13" name="company">
+      <ColNames>company</ColNames>
+    </index>
+    <index id="36" parent="13" name="role">
+      <ColNames>role</ColNames>
+    </index>
+    <key id="37" parent="13" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="38" parent="13" name="user_ibfk_1">
+      <ColNames>company</ColNames>
+      <RefSchemaName>nst</RefSchemaName>
+      <RefTableName>company</RefTableName>
+      <RefColNames>pib</RefColNames>
+    </foreign-key>
+    <foreign-key id="39" parent="13" name="user_ibfk_2">
+      <ColNames>role</ColNames>
+      <RefSchemaName>nst</RefSchemaName>
+      <RefTableName>role</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
