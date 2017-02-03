@@ -6,7 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import rs.silab.nst.model.UserEntity;
+import rs.silab.nst.model.User;
 
 @Controller
 @RequestMapping("/api/")
@@ -21,7 +21,7 @@ public class NERRestController {
 //	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.POST)
-	public String register(@Validated UserEntity user, ModelMap model, BindingResult result) {
+	public String register(@Validated User user, ModelMap model, BindingResult result) {
 		if (result.hasErrors()) {
 			return "prijavi_se";
 		}
@@ -33,7 +33,7 @@ public class NERRestController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start(ModelMap model) {
 //		model.addAttribute("roles", roleService.findAllRoles());
-		model.addAttribute("user", new UserEntity());
+		model.addAttribute("user", new User());
 		return "prijavi_se";
 	}
 
