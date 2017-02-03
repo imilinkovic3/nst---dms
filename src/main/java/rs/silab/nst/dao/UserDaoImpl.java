@@ -1,7 +1,7 @@
 package rs.silab.nst.dao;
 
 import org.springframework.stereotype.Repository;
-import rs.silab.nst.model.UserEntity;
+import rs.silab.nst.model.User;
 
 import javax.persistence.NoResultException;
 import java.util.Collection;
@@ -9,20 +9,20 @@ import java.util.List;
 
 
 @Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements UserDao {
+public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
-    public UserEntity findById(int id) {
-        UserEntity user = getByKey(id);
+    public User findById(int id) {
+        User user = getByKey(id);
 //		if(user!=null){
 //			initializeCollection(user.getUserProfiles());
 //		}
         return user;
     }
 
-    public UserEntity findBySSO(String sso) {
+    public User findBySSO(String sso) {
         System.out.println("SSO : " + sso);
         try {
-            UserEntity user = (UserEntity) getEntityManager()
+            User user = (User) getEntityManager()
                     .createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
                     .setParameter("ssoId", sso)
                     .getSingleResult();
@@ -37,19 +37,19 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
     }
 
     @SuppressWarnings("unchecked")
-    public List<UserEntity> findAllUsers() {
-        List<UserEntity> users = getEntityManager()
+    public List<User> findAllUsers() {
+        List<User> users = getEntityManager()
                 .createQuery("SELECT u FROM User u ORDER BY u.firstName ASC")
                 .getResultList();
         return users;
     }
 
-    public void save(UserEntity user) {
+    public void save(User user) {
         persist(user);
     }
 
     public void deleteBySSO(String sso) {
-        UserEntity user = (UserEntity) getEntityManager()
+        User user = (User) getEntityManager()
                 .createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
                 .setParameter("ssoId", sso)
                 .getSingleResult();

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rs.silab.nst.dao.UserDao;
-import rs.silab.nst.model.UserEntity;
+import rs.silab.nst.model.User;
 
 import java.util.List;
 
@@ -16,16 +16,16 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao dao;
 
-    public UserEntity findById(int id) {
+    public User findById(int id) {
         return dao.findById(id);
     }
 
-    public UserEntity findBySSO(String sso) {
-        UserEntity user = dao.findBySSO(sso);
+    public User findBySSO(String sso) {
+        User user = dao.findBySSO(sso);
         return user;
     }
 
-    public void saveUser(UserEntity user) {
+    public void saveUser(User user) {
         dao.save(user);
     }
 
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
      * Just fetch the entity from db and update it with proper values within transaction.
      * It will be updated in db once transaction ends.
      */
-    public void updateUser(UserEntity user) {
+    public void updateUser(User user) {
 //		User entity = dao.findById(user.getId());
 //		if(entity!=null){
 //			entity.setSsoId(user.getSsoId());
@@ -51,12 +51,12 @@ public class UserServiceImpl implements UserService {
         dao.deleteBySSO(sso);
     }
 
-    public List<UserEntity> findAllUsers() {
+    public List<User> findAllUsers() {
         return dao.findAllUsers();
     }
 
     public boolean isUserSSOUnique(Integer id, String sso) {
-        UserEntity user = findBySSO(sso);
+        User user = findBySSO(sso);
         return (user == null || ((id != null) && (user.getId() == id)));
     }
 

@@ -1,16 +1,16 @@
 package rs.silab.nst.service;
 
-import rs.silab.nst.model.RoleEntity;
+import rs.silab.nst.model.Role;
 
 import java.util.List;
 
 
 public interface UserProfileService {
 
-	RoleEntity findById(int id);
+	Role findById(int id);
 
-	RoleEntity findByType(String type);
+	Role findByType(String type);
 	
-	List<RoleEntity> findAll();
+	List<Role> findAll();
 	
 }

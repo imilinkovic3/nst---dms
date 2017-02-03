@@ -1,21 +1,21 @@
 package rs.silab.nst.dao;
 
-import rs.silab.nst.model.UserEntity;
+import rs.silab.nst.model.User;
 
 import java.util.List;
 
 
 public interface UserDao {
 
-    UserEntity findById(int id);
+    User findById(int id);
 
-    UserEntity findBySSO(String sso);
+    User findBySSO(String sso);
 
-    void save(UserEntity user);
+    void save(User user);
 
     void deleteBySSO(String sso);
 
-    List<UserEntity> findAllUsers();
+    List<User> findAllUsers();
 
 }
 

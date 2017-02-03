@@ -1,24 +1,24 @@
 package rs.silab.nst.service;
 
-import rs.silab.nst.model.UserEntity;
+import rs.silab.nst.model.User;
 
 import java.util.List;
 
 
 public interface UserService {
 	
-	UserEntity findById(int id);
+	User findById(int id);
+
+	User findBySSO(String sso);
 	
-	UserEntity findBySSO(String sso);
+	void saveUser(User user);
 	
-	void saveUser(UserEntity user);
-	
-	void updateUser(UserEntity user);
+	void updateUser(User user);
 	
 	void deleteUserBySSO(String sso);
 
-	List<UserEntity> findAllUsers();
-	
+	List<User> findAllUsers();
+
 	boolean isUserSSOUnique(Integer id, String sso);
 
 }

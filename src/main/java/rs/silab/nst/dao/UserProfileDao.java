@@ -1,15 +1,15 @@
 package rs.silab.nst.dao;
 
-import rs.silab.nst.model.RoleEntity;
+import rs.silab.nst.model.Role;
 
 import java.util.List;
 
 
 public interface UserProfileDao {
 
-    List<RoleEntity> findAll();
+    List<Role> findAll();
 
-    RoleEntity findByType(String type);
+    Role findByType(String type);
 
-    RoleEntity findById(int id);
+    Role findById(int id);
 }

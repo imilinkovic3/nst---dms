@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rs.silab.nst.dao.UserProfileDao;
-import rs.silab.nst.model.RoleEntity;
+import rs.silab.nst.model.Role;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class UserProfileServiceImpl implements UserProfileService{
 	@Autowired
 	UserProfileDao dao;
 	
-	public RoleEntity findById(int id) {
+	public Role findById(int id) {
 		return dao.findById(id);
 	}
 
-	public RoleEntity findByType(String type){
+	public Role findByType(String type){
 		return dao.findByType(type);
 	}
 
-	public List<RoleEntity> findAll() {
+	public List<Role> findAll() {
 		return dao.findAll();
 	}
 }
