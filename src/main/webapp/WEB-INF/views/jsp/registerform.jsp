@@ -18,10 +18,10 @@
 			placeholder="Lastname" id="lastname" tabindex="1"
 			class="form-control" value="" />
 	</div>
-	<%--<div class="form-group">--%>
-		<%--<form:select path="roleBean" items="${roles}" multiple="true"--%>
-			<%--itemValue="id" itemLabel="name" class="form-control input-sm" />--%>
-	<%--</div>--%>
+	<div class="form-group">
+		<form:select path="roleByRole" items="${roles}" multiple="true"
+			itemValue="id" itemLabel="name" class="form-control input-sm" />
+	</div>
 	<spring:bind path="email">
 		<div class="form-group ${status.error ? 'has-error' : ''}">
 			<div class="form-group">

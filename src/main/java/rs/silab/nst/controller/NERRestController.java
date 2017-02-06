@@ -1,5 +1,6 @@
 package rs.silab.nst.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -7,10 +8,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import rs.silab.nst.model.User;
+import rs.silab.nst.service.RoleService;
 
 @Controller
 @RequestMapping("/api/")
 public class NERRestController {
+
+	@Autowired
+	RoleService roleService;
 //
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String printWelcome(ModelMap model) {
@@ -32,7 +37,7 @@ public class NERRestController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start(ModelMap model) {
-//		model.addAttribute("roles", roleService.findAllRoles());
+	model.addAttribute("roles", roleService.findAllRoles());
 		model.addAttribute("user", new User());
 		return "prijavi_se";
 	}
