@@ -22,14 +22,14 @@ $(function () {
                 required: true,
                 equalTo: "#password"
             },
-            "companyBean.pib" : "required",
-            "companyBean.name" : "required",
-            "companyBean.address" : "required",
-            "companyBean.city" : "required",
-            "companyBean.postalcode" : "required",
-            "companyBean.country" : "required",
-            "companyBean.fax" : "required",
-            "companyBean.phone" : "required"
+            "companyBean.pib": "required",
+            "companyBean.name": "required",
+            "companyBean.address": "required",
+            "companyBean.city": "required",
+            "companyBean.postalcode": "required",
+            "companyBean.country": "required",
+            "companyBean.fax": "required",
+            "companyBean.phone": "required"
         },
         messages: {
             firstname: "Please enter your firstname",
@@ -48,14 +48,14 @@ $(function () {
                 required: "Please provide a password",
                 equalTo: "Passwords do not match"
             },
-            "companyBean.pib" : "Please enter a pib",
-            "companyBean.name" : "Please enter a name",
-            "companyBean.address" : "Please enter a address",
-            "companyBean.city" : "Please enter a city",
-            "companyBean.postalcode" : "Please enter a postalcode",
-            "companyBean.country" : "Please enter a country",
-            "companyBean.fax" : "Please enter a fax",
-            "companyBean.phone" : "Please enter a phone"
+            "companyBean.pib": "Please enter a pib",
+            "companyBean.name": "Please enter a name",
+            "companyBean.address": "Please enter a address",
+            "companyBean.city": "Please enter a city",
+            "companyBean.postalcode": "Please enter a postalcode",
+            "companyBean.country": "Please enter a country",
+            "companyBean.fax": "Please enter a fax",
+            "companyBean.phone": "Please enter a phone"
         },
         submitHandler: function (form) {
             form.submit();
