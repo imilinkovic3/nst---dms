@@ -13,9 +13,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
     public User findById(int id) {
         User user = getByKey(id);
-//		if(user!=null){
-//			initializeCollection(user.getUserProfiles());
-//		}
+
         return user;
     }
 
@@ -27,9 +25,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
                     .setParameter("ssoId", sso)
                     .getSingleResult();
 
-//			if(user!=null){
-//				initializeCollection(user.getUserProfiles());
-//			}
             return user;
         } catch (NoResultException ex) {
             return null;

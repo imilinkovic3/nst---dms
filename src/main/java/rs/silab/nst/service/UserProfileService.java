@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface UserProfileService {
 
-	Role findById(int id);
+    Role findById(int id);
 
-	Role findByType(String type);
-	
-	List<Role> findAll();
-	
+    Role findByType(String type);
+
+    List<Role> findAll();
+
 }
