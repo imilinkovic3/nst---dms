@@ -4,7 +4,6 @@
 
 <form:form id="register-form" style="display: none;"
            modelAttribute="user" method="POST" name="register-form" action="/nst/register/">
-           modelAttribute="user" method="POST" action="/nst/confrimregistration/">
 
     <div class="form-group">
         <form:input path="firstname" type="text" name="firstname"
@@ -49,5 +48,9 @@
                              class="form-control btn btn-register">REGISTER</form:button>
             </div>
         </div>
+    </div>
+
+    <div class="form-group">
+
     </div>
 </form:form>
