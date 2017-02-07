@@ -1,3 +1,7 @@
+.error {
+	color: #b92c28;
+}
+
 body {
   padding-top: 90px;
   background:#F7F7F7;
@@ -5,7 +9,6 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight:100;
 }
-
 body{
   width: 100%;
   background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
