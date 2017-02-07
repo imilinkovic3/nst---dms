@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<form:form style="display: block;" id="login-form" action="login"
+<form:form style="display: block;" id="login-form" action="/nst/login/"
            method="post">
     <div class="form-group">
         <input type="text" name="username" placeholder="Username"

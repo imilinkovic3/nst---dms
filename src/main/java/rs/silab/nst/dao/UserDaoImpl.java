@@ -11,52 +11,71 @@ import java.util.List;
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
-    public User findById(int id) {
-        User user = getByKey(id);
-
-        return user;
-    }
-
-    public User findBySSO(String sso) {
-        System.out.println("SSO : " + sso);
-        try {
-            User user = (User) getEntityManager()
-                    .createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
-                    .setParameter("ssoId", sso)
-                    .getSingleResult();
-
-            return user;
-        } catch (NoResultException ex) {
-            return null;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<User> findAllUsers() {
-        List<User> users = getEntityManager()
-                .createQuery("SELECT u FROM User u ORDER BY u.firstName ASC")
-                .getResultList();
-        return users;
-    }
+//    public User findById(int id) {
+//        User user = getByKey(id);
+//
+//        return user;
+//    }
+//
+//    public User findBySSO(String sso) {
+//        System.out.println("SSO : " + sso);
+//        try {
+//            User user = (User) getEntityManager()
+//                    .createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
+//                    .setParameter("ssoId", sso)
+//                    .getSingleResult();
+//
+//            return user;
+//        } catch (NoResultException ex) {
+//            return null;
+//        }
+//    }
+//
+//    @SuppressWarnings("unchecked")
+//    public List<User> findAllUsers() {
+//        List<User> users = getEntityManager()
+//                .createQuery("SELECT u FROM User u ORDER BY u.firstName ASC")
+//                .getResultList();
+//        return users;
+//    }
 
     public void save(User user) {
         persist(user);
     }
 
-    public void deleteBySSO(String sso) {
-        User user = (User) getEntityManager()
-                .createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
-                .setParameter("ssoId", sso)
-                .getSingleResult();
-        delete(user);
-    }
+//    public void deleteBySSO(String sso) {
+//        User user = (User) getEntityManager()
+//                .createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
+//                .setParameter("ssoId", sso)
+//                .getSingleResult();
+//        delete(user);
+//    }
+//
+//    //An alternative to Hibernate.initialize()
+//    protected void initializeCollection(Collection<?> collection) {
+//        if (collection == null) {
+//            return;
+//        }
+//        collection.iterator().hasNext();
+//    }
 
-    //An alternative to Hibernate.initialize()
-    protected void initializeCollection(Collection<?> collection) {
-        if (collection == null) {
-            return;
+
+    @Override
+    public User findByUsername(User user) {
+
+        System.out.println("user iz dao klase : " + user);
+        try {
+            User u = (User) getEntityManager()
+                    .createQuery("SELECT u FROM User u WHERE u.username LIKE :username")
+                    .setParameter("username", user.getUsername())
+                    .getSingleResult();
+
+            return u;
+        } catch (NoResultException ex) {
+           System.out.print("usao u catch");
+            return null;
         }
-        collection.iterator().hasNext();
-    }
 
+
+    }
 }

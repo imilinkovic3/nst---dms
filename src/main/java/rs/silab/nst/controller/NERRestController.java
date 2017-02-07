@@ -70,6 +70,22 @@ public class NERRestController {
         return "confrim_registration";
     }
 
+    @RequestMapping(value = {"/login/"}, method = RequestMethod.POST)
+    public String login(@Validated User user, BindingResult result) {
+        System.out.println(user);
+       User u = userService.findByUsername(user);
+       if (u.getPassword().equals(user.getPassword())){
+           if(u.getRoleBean().getName().equalsIgnoreCase("admin")){
+               return "homepage_admin";
+           }
+           if(u.getRoleBean().getName().equalsIgnoreCase("user")){
+               return "homepage_user";
+           }
+       }
+
+        return "prijavi_se";
+    }
+
     public void sendConfirmationEmail() throws AddressException, MessagingException {
 
         // Step1

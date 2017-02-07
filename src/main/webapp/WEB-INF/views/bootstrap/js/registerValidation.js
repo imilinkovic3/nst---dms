@@ -1,39 +1,64 @@
-// Wait for the DOM to be ready
-$(function() {
-    // Initialize form validation on the registration form.
-    // It has the name attribute "registration"
-    $("form[name='formica']").validate({
-        // Specify validation rules
+$(function () {
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#register-form").validate({
         rules: {
-            // The key name on the left side is the name attribute
-            // of an input field. Validation rules are defined
-            // on the right side
             firstname: "required",
             lastname: "required",
             email: {
                 required: true,
-                // Specify that email should be validated
-                // by the built-in "email" rule
                 email: true
             },
             password: {
                 required: true,
-                minlength: 5
-            }
-        },
-        // Specify validation error messages
-        messages: {
-            firstname: "Please enter your firstname",
-            lastname: "Please enter your lastname",
-            password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long"
+                rangelength: [6, 12]
             },
-            email: "Please enter a valid email address"
+            roleBean: "required",
+            username: {
+                required: true
+            },
+            confirmPassword: {
+                required: true,
+                equalTo: "#password"
+            },
+            "companyBean.pib": "required",
+            "companyBean.name": "required",
+            "companyBean.address": "required",
+            "companyBean.city": "required",
+            "companyBean.postalcode": "required",
+            "companyBean.country": "required",
+            "companyBean.fax": "required",
+            "companyBean.phone": "required"
         },
-        // Make sure the form is submitted to the destination defined
-        // in the "action" attribute of the form when valid
-        submitHandler: function(form) {
+        messages: {
+            firstname: "* Please enter your firstname",
+            lastname: "* Please enter your lastname",
+            password: {
+                required: "* Please provide a password",
+                rangelength: "* Your password must be in the range 6-12"
+            },
+            email: {
+                required: "* Please enter email address",
+                email: "* Please enter a valid email address"
+            },
+            roleBean: "* Please select at least one role",
+            username: "* Please enter your username",
+            confirmPassword: {
+                required: "* Please provide a password",
+                equalTo: "* Passwords do not match"
+            },
+            "companyBean.pib": "* Please enter a pib",
+            "companyBean.name": "* Please enter a name",
+            "companyBean.address": "* Please enter a address",
+            "companyBean.city": "* Please enter a city",
+            "companyBean.postalcode": "* Please enter a postalcode",
+            "companyBean.country": "* Please enter a country",
+            "companyBean.fax": "* Please enter a fax",
+            "companyBean.phone": "* Please enter a phone"
+        },
+        submitHandler: function (form) {
             form.submit();
         }
     });
