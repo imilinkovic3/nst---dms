@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
         <form:input path="" type="password" name="confirmPassword"
-                    placeholder="Confirm password" id="confirm-password" tabindex="2"
+                    placeholder="Confirm password" id="confirmPassword" tabindex="2"
                     class="form-control"/>
     </div>
 
