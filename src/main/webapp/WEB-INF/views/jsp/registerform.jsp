@@ -3,7 +3,7 @@
 
 
 <form:form id="register-form" style="display: none;"
-           modelAttribute="user" method="POST" name="register-form" action="/nst/register/">
+           modelAttribute="user" method="POST" name="register-form" action="/nst/confrimregistration/">
 
     <div class="form-group">
         <form:input path="firstname" type="text" name="firstname"

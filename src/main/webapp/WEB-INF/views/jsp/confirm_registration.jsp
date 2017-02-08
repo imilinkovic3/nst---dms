@@ -13,7 +13,6 @@
 <body>
 <form:form style="display: block;" id="login-form" action="/nst/register/"
            method="post">
-
     <div class="form-group col-sm-4 col-sm-offset-3">
         <h3> Please enter a received code </h3>
         <input type="text" name="code" id="code"
@@ -28,11 +27,6 @@
             </div>
         </div>
     </div>
-
-    <div class="form-group text-center">
-
-    </div>
 </form:form>
 </body>
-
 </html>
