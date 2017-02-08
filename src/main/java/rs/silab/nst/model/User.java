@@ -102,4 +102,17 @@ public class User implements Serializable {
         this.roleBean = roleBean;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", companyBean=" + companyBean +
+                ", roleBean=" + roleBean +
+                '}';
+    }
 }
