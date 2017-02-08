@@ -2,8 +2,8 @@ package rs.silab.nst.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import rs.silab.nst.model.User;
@@ -46,6 +46,22 @@ public class LoginRegistrationController {
             return "confirm_registration";
         }
 //        userService.saveUser(user);
+        return "prijavi_se";
+    }
+
+    @RequestMapping(value = {"/login/"}, method = RequestMethod.POST)
+    public String login(@Validated User user, BindingResult result) {
+        System.out.println(user);
+        User u = userService.findByUsername(user);
+        if (u.getPassword().equals(user.getPassword())) {
+            if (u.getRoleBean().getName().equalsIgnoreCase("admin")) {
+                return "homepage_admin";
+            }
+            if (u.getRoleBean().getName().equalsIgnoreCase("user")) {
+                return "homepage_user";
+            }
+        }
+
         return "prijavi_se";
     }
 }

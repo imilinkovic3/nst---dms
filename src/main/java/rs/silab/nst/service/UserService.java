@@ -2,8 +2,6 @@ package rs.silab.nst.service;
 
 import rs.silab.nst.model.User;
 
-import java.util.List;
-
 
 public interface UserService {
 

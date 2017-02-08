@@ -4,8 +4,6 @@ import org.springframework.stereotype.Repository;
 import rs.silab.nst.model.User;
 
 import javax.persistence.NoResultException;
-import java.util.Collection;
-import java.util.List;
 
 
 @Repository("userDao")
@@ -72,7 +70,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
             return u;
         } catch (NoResultException ex) {
-           System.out.print("usao u catch");
+            System.out.print("usao u catch");
             return null;
         }
 

@@ -12,10 +12,7 @@
 </head>
 <body>
 <div class="container">
-ADMIN*********************
+    ADMIN*********************
 </div>
 </body>
-
-
-
 </html>
