@@ -12,14 +12,7 @@
 </head>
 <body>
 <div class="container">
-
-    ADMIN*********************
-
-
-    <%@include file="user_creation.jsp" %>
-    <%@include file="company_information.jsp" %>
-
-
+    PROCESS CREATOR*********************
 </div>
 </body>
 

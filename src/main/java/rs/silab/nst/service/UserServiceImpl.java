@@ -14,7 +14,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao dao;
+    private UserDao userDao;
 
 //    public User findById(int id) {
 //        return dao.findById(id);
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 //    }
 //
     public void saveUser(User user) {
-        dao.save(user);
+        userDao.save(user);
     }
 //
 //    /*
@@ -51,9 +51,9 @@ public class UserServiceImpl implements UserService {
 //        dao.deleteBySSO(sso);
 //    }
 //
-//    public List<User> findAllUsers() {
-//        return dao.findAllUsers();
-//    }
+    public List<User> findAllUsers() {
+        return userDao.findAllUsers();
+    }
 //
 //    public boolean isUserSSOUnique(Integer id, String sso) {
 //        User user = findBySSO(sso);
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(User user) {
-       return dao.findByUsername(user);
+       return userDao.findByUsername(user);
     }
 
 }

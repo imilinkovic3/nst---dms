@@ -1,5 +1,6 @@
 package rs.silab.nst.controller;
 
+import org.hibernate.Hibernate;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import rs.silab.nst.model.Role;
 import rs.silab.nst.model.User;
 import rs.silab.nst.service.RoleService;
 import rs.silab.nst.service.UserService;
@@ -54,16 +56,36 @@ public class LoginRegistrationController {
     }
 
     @RequestMapping(value = {"/login/"}, method = RequestMethod.POST)
-    public String login(@Validated User user, BindingResult result) {
-        System.out.println(user);
-        User u = userService.findByUsername(user);
-        if (u.getPassword().equals(user.getPassword())) {
-            if (u.getRoleBean().getName().equalsIgnoreCase("admin")) {
-                return "homepage_admin";
+    public String login(@Validated User user, BindingResult result,ModelMap model) {
+
+      User u = userService.findByUsername(user);
+          if (u.getPassword().equals(user.getPassword())) {
+            model.addAttribute("users", userService.findAllUsers());
+            model.addAttribute("roles", roleService.findAllRoles());
+
+            for (Role role:u.getRoles()) {
+                if (role.getName().equalsIgnoreCase("admin")) {
+
+                    return "homepage_admin";
+                }
             }
-            if (u.getRoleBean().getName().equalsIgnoreCase("user")) {
-                return "homepage_user";
+
+            for (Role role:u.getRoles()) {
+
+                if (role.getName().equalsIgnoreCase("user")) {
+                    return "homepage_user";
+                }
+
             }
+            for (Role role:u.getRoles()) {
+
+                if (role.getName().equalsIgnoreCase("processcreator")) {
+                    return "homepage_processcreator";
+                }
+
+            }
+
+
         }
 
         return "prijavi_se";

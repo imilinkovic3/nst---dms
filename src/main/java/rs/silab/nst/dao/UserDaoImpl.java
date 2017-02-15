@@ -1,6 +1,8 @@
 package rs.silab.nst.dao;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
+import rs.silab.nst.model.Role;
 import rs.silab.nst.model.User;
 
 import javax.persistence.NoResultException;
@@ -31,13 +33,14 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 //        }
 //    }
 //
-//    @SuppressWarnings("unchecked")
-//    public List<User> findAllUsers() {
-//        List<User> users = getEntityManager()
-//                .createQuery("SELECT u FROM User u ORDER BY u.firstName ASC")
-//                .getResultList();
-//        return users;
-//    }
+   @SuppressWarnings("unchecked")
+    public List<User> findAllUsers() {
+        List<User> users = getEntityManager()
+                .createQuery("SELECT u FROM User u ORDER BY u.firstname ASC")
+                .getResultList();
+        return users;
+    }
+
 
     public void save(User user) {
         persist(user);
@@ -69,7 +72,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
                     .createQuery("SELECT u FROM User u WHERE u.username LIKE :username")
                     .setParameter("username", user.getUsername())
                     .getSingleResult();
-
             return u;
         } catch (NoResultException ex) {
            System.out.print("usao u catch");

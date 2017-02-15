@@ -25,8 +25,8 @@ public class RegistrationSendingEmailController {
     @RequestMapping(value = {"/confrimregistration/"}, method = RequestMethod.POST)
     public String confrimRregistration(@Validated User user, BindingResult result, HttpServletRequest request) {
         try {
-          //  sendConfirmationEmail(request);
-            testMetoda(request);
+           sendConfirmationEmail(request);
+           // testMetoda(request);
         } catch (MessagingException e) {
             e.printStackTrace();
             return "prijavi_se";
@@ -55,12 +55,12 @@ public class RegistrationSendingEmailController {
 
         EmailService emailService = new EmailService(configuration);
         Email email = new Email();
-        email.setFrom("imilinkovic@gmail.com");
-        email.setTo("imilinkovic@gmail.com");
+        email.setFrom("imilinkovic3@gmail.com");
+        email.setTo("imilinkovic3@gmail.com");
 
         int confirmationCode = (int) Math.round(Math.random() * 10000);
         System.out.println("conf code"+confirmationCode);
-        request.getSession().setAttribute("ConfirmationCode", confirmationCode);
+        request.getSession().setAttribute("confirmationcode", confirmationCode);
 
         email.setSubject("Register confirmation");
         email.setText("Please, confirm your registretion with folowing code " + confirmationCode);
