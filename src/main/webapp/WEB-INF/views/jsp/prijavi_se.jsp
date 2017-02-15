@@ -10,7 +10,7 @@
     </style>
     <title>Login</title>
 </head>
-<body>
+<body id="mainBody">
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">

@@ -11,6 +11,8 @@ public class EmailConfiguration {
     public static final String SMTP_AUTH_USER = "smtp.auth.user";
     public static final String SMTP_AUTH_PWD = "smtp.auth.pwd";
     public static final String DEBUG = "debug";
+   // public static final String SMTP_PORT = "smtp.smtp.port";
+
 
     public Properties getProperties() {
         return this.properties;

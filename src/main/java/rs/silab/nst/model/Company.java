@@ -122,4 +122,18 @@ public class Company implements Serializable {
         return user;
     }
 
+    @Override
+    public String toString() {
+        return "Company{" +
+                "pib='" + pib + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", fax='" + fax + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", postalcode=" + postalcode +
+                ", users=" + users +
+                '}';
+    }
 }

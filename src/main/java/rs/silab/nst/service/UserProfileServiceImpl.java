@@ -13,18 +13,18 @@ import java.util.List;
 @Transactional
 public class UserProfileServiceImpl implements UserProfileService {
 
-    @Autowired
-    UserProfileDao dao;
-
-    public Role findById(int id) {
-        return dao.findById(id);
-    }
-
-    public Role findByType(String type) {
-        return dao.findByType(type);
-    }
-
-    public List<Role> findAll() {
-        return dao.findAll();
-    }
+//    @Autowired
+//    UserProfileDao dao;
+//
+//    public Role findById(int id) {
+//        return dao.findById(id);
+//    }
+//
+//    public Role findByType(String type) {
+//        return dao.findByType(type);
+//    }
+//
+//    public List<Role> findAll() {
+//        return dao.findAll();
+//    }
 }

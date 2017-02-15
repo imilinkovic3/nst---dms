@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserProfileDao {
 
-    List<Role> findAll();
-
-    Role findByType(String type);
-
-    Role findById(int id);
+//    List<Role> findAll();
+//
+//    Role findByType(String type);
+//
+//    Role findById(int id);
 }
