@@ -57,45 +57,36 @@ public class LoginRegistrationController {
 
     @RequestMapping(value = {"/login/"}, method = RequestMethod.POST)
     public String login(@Validated User user, BindingResult result,ModelMap model) {
-        System.out.println("****************************************************************"+user);
-        User u = userService.findByUsername(user);
 
-        System.out.println("user iz baze****************************************************************"+u);
-      //  if (u.getPassword().equals(user.getPassword())) {
-//            model.addAttribute("users", userService.findAllUsers());
-//            model.addAttribute("roles", roleService.findAllRoles());
-//            System.out.println("Useri:::: "+model.get("users"));
-//            System.out.println("Role:::: "+model.get("roles"));
+      User u = userService.findByUsername(user);
+          if (u.getPassword().equals(user.getPassword())) {
+            model.addAttribute("users", userService.findAllUsers());
+            model.addAttribute("roles", roleService.findAllRoles());
 
+            for (Role role:u.getRoles()) {
+                if (role.getName().equalsIgnoreCase("admin")) {
 
+                    return "homepage_admin";
+                }
+            }
 
+            for (Role role:u.getRoles()) {
 
-//            for (Role role:u.getRoles()) {
-//                if (role.getName().equalsIgnoreCase("admin")) {
-//
-//                    return "homepage_admin";
-//                }
-//            }
-//
-//            for (Role role:u.getRoles()) {
-//
-//                if (role.getName().equalsIgnoreCase("user")) {
-//                    return "homepage_user";
-//                }
-//
-//            }
-//            for (Role role:u.getRoles()) {
-//
-//                if (role.getName().equalsIgnoreCase("processcreator")) {
-//                    return "homepage_processcreator";
-//                }
-//
-//            }
-           // Hibernate.initialize(teen.getUser());
-          //  return "homepage_user";
+                if (role.getName().equalsIgnoreCase("user")) {
+                    return "homepage_user";
+                }
+
+            }
+            for (Role role:u.getRoles()) {
+
+                if (role.getName().equalsIgnoreCase("processcreator")) {
+                    return "homepage_processcreator";
+                }
+
+            }
 
 
-      //  }
+        }
 
         return "prijavi_se";
     }

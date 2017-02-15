@@ -72,14 +72,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
                     .createQuery("SELECT u FROM User u WHERE u.username LIKE :username")
                     .setParameter("username", user.getUsername())
                     .getSingleResult();
-           // Hibernate.initialize(u);
-          //  System.out.println("inicijalizovano u:***************88"+u );
-
-            //  System.out.println("user iz dao klase iz baze : " + u);
-
-
             return u;
-            //return user;
         } catch (NoResultException ex) {
            System.out.print("usao u catch");
             return null;
