@@ -15,10 +15,10 @@
                     placeholder="Lastname" id="lastname" tabindex="1"
                     class="form-control" value=""/>
     </div>
-    <div class="form-group">
-        <form:select path="roleBean" items="${roles}" multiple="true"
-                     itemValue="id" itemLabel="name" id="roles" class="form-control input-sm"/>
-    </div>
+    <%--<div class="form-group">--%>
+        <%--<form:select path="roleBean" items="${roles}" multiple="true"--%>
+                     <%--itemValue="id" itemLabel="name" id="roles" class="form-control input-sm"/>--%>
+    <%--</div>--%>
     <div class="form-group">
         <form:input path="email" type="email" name="email"
                     placeholder="Email" id="email" tabindex="1" class="form-control"/>
