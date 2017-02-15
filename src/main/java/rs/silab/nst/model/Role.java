@@ -1,9 +1,6 @@
 package rs.silab.nst.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class Role implements Serializable {
 
     private String title;
 
-    @OneToMany(mappedBy = "roleBean")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
     private List<User> users;
 
     public Role() {
@@ -55,20 +52,6 @@ public class Role implements Serializable {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public User addUser(User user) {
-        getUsers().add(user);
-        user.setRoleBean(this);
-
-        return user;
-    }
-
-    public User removeUser(User user) {
-        getUsers().remove(user);
-        user.setRoleBean(null);
-
-        return user;
     }
 
 }

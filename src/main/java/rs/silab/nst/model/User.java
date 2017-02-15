@@ -5,6 +5,7 @@ import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
@@ -30,10 +31,10 @@ public class User implements Serializable {
     @Cascade(value = CascadeType.ALL)
     private Company companyBean;
 
-    @ManyToOne
-    @JoinColumn(name = "role")
-    @Cascade(value = CascadeType.ALL)
-    private Role roleBean;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "role_id")})
+    private List<Role> roles;
 
     public User() {
     }
@@ -94,12 +95,12 @@ public class User implements Serializable {
         this.companyBean = companyBean;
     }
 
-    public Role getRoleBean() {
-        return this.roleBean;
+    public List<Role> getRoles() {
+        return this.roles;
     }
 
-    public void setRoleBean(Role roleBean) {
-        this.roleBean = roleBean;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -112,7 +113,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 ", companyBean=" + companyBean +
-                ", roleBean=" + roleBean +
+                ", roles=" + roles +
                 '}';
     }
 }

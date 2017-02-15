@@ -44,7 +44,7 @@ public class LoginRegistrationController {
             int confirmationCode = (Integer) request.getSession().getAttribute("confirmationcode");
 
             if (codeFromUser != confirmationCode) {
-               return "confirm_registration";
+                return "confirm_registration";
             }
         } catch (NumberFormatException e) {
             return "confirm_registration";
@@ -57,14 +57,14 @@ public class LoginRegistrationController {
     public String login(@Validated User user, BindingResult result) {
         System.out.println(user);
         User u = userService.findByUsername(user);
-        if (u.getPassword().equals(user.getPassword())) {
-            if (u.getRoleBean().getName().equalsIgnoreCase("admin")) {
-                return "homepage_admin";
-            }
-            if (u.getRoleBean().getName().equalsIgnoreCase("user")) {
-                return "homepage_user";
-            }
-        }
+//        if (u.getPassword().equals(user.getPassword())) {
+//            if (u.getRoleBean().getName().equalsIgnoreCase("admin")) {
+//                return "homepage_admin";
+//            }
+//            if (u.getRoleBean().getName().equalsIgnoreCase("user")) {
+//                return "homepage_user";
+//            }
+//        }
 
         return "prijavi_se";
     }
