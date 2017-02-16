@@ -11,9 +11,7 @@
     <title>Login</title>
 </head>
 <body>
-<div class="container">
-
-    ADMIN*********************
+<div >
 
 
     <%@include file="user_creation.jsp" %>

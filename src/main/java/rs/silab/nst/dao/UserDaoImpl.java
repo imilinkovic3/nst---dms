@@ -13,11 +13,11 @@ import java.util.List;
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
-//    public User findById(int id) {
-//        User user = getByKey(id);
-//
-//        return user;
-//    }
+    public User findById(int id) {
+        User user = getByKey(id);
+
+        return user;
+    }
 //
 //    public User findBySSO(String sso) {
 //        System.out.println("SSO : " + sso);
@@ -41,10 +41,11 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         return users;
     }
 
-
     public void save(User user) {
         persist(user);
     }
+
+
 
 //    public void deleteBySSO(String sso) {
 //        User user = (User) getEntityManager()
@@ -80,4 +81,17 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 
     }
+
+    @Override
+    public User findByEmail(User user) {
+        try {
+            User u = (User) getEntityManager()
+                    .createQuery("SELECT u FROM User u WHERE u.email LIKE :email")
+                    .setParameter("email", user.getEmail())
+                    .getSingleResult();
+            return u;
+        } catch (NoResultException ex) {
+            System.out.print("usao u catch email");
+            return null;
+        }    }
 }

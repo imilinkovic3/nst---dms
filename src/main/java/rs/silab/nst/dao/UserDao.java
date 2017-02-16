@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDao {
 
-   // User findById(int id);
+   User findById(int id);
 
   //  User findBySSO(String sso);
 
@@ -18,5 +18,7 @@ public interface UserDao {
     List<User> findAllUsers();
 
     User findByUsername(User user);
+    User findByEmail(User user);
+
 }
 

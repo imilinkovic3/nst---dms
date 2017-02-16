@@ -13,7 +13,7 @@ public interface UserService {
 
     void saveUser(User user);
 
-//    void updateUser(User user);
+   void updateUser(User user);
 //
 //    void deleteUserBySSO(String sso);
 //
@@ -23,4 +23,5 @@ public interface UserService {
 
     User findByUsername(User user);
 
+    User findByEmail(User user);
 }

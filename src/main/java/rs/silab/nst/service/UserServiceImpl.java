@@ -34,17 +34,17 @@ public class UserServiceImpl implements UserService {
 //     * Just fetch the entity from db and update it with proper values within transaction.
 //     * It will be updated in db once transaction ends.
 //     */
-//    public void updateUser(User user) {
-////		User entity = dao.findById(user.getId());
-////		if(entity!=null){
-////			entity.setSsoId(user.getSsoId());
-////			entity.setPassword(user.getPassword());
-////			entity.setFirstName(user.getFirstName());
-////			entity.setLastName(user.getLastName());
-////			entity.setEmail(user.getEmail());
-////			entity.setUserProfiles(user.getUserProfiles());
-////		}
-//    }
+    public void updateUser(User user) {
+		User entity = userDao.findById(user.getId());
+		System.out.println("Vec postojeci user iz baze:"+entity);
+		if(entity!=null){
+			entity.setEmail(user.getEmail());
+			entity.setFirstname(user.getFirstname());
+			entity.setLastname(user.getLastname());
+			entity.setUsername(user.getUsername());
+		}
+		userDao.save(entity);
+    }
 //
 //
 //    public void deleteUserBySSO(String sso) {
@@ -64,5 +64,11 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(User user) {
        return userDao.findByUsername(user);
     }
+
+    @Override
+    public User findByEmail(User user) {
+        return userDao.findByEmail(user);
+    }
+
 
 }

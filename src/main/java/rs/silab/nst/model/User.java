@@ -87,4 +87,16 @@ public class User implements Serializable {
                 ", roles=" + roles +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof User){
+           User user = (User)obj;
+           if(user.getId()==this.getId()){
+               return true;
+           }
+        }
+
+        return false;
+    }
 }
