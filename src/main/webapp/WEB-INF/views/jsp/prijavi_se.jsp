@@ -7,6 +7,8 @@
     <style type="text/css">
         <%@include file="../bootstrap/css/bootstrap-login.css"%>
         <%@include file="../bootstrap/css/bootstrap.css"%>
+        <%@include file="../bootstrap/css/userinformation-popup.css"%>
+
     </style>
     <title>Login</title>
 </head>
@@ -51,6 +53,10 @@
 <script type="text/javascript">
     <%--<%@include file="../../../js/registerValidation.js"%>--%>
     <%@include file="../../../js/login.js"%>
+</script>
+<script>
+    <%@include file="../../../js/forgotPasswordPopup.js" %>
+
 </script>
 
 </html>

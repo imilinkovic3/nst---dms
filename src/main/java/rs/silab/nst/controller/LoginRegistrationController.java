@@ -59,7 +59,7 @@ public class LoginRegistrationController {
     public String login(@Validated User user, BindingResult result,ModelMap model) {
 
       User u = userService.findByUsername(user);
-          if (u.getPassword().equals(user.getPassword())) {
+          if (u!=null && u.getPassword().equals(user.getPassword())) {
             model.addAttribute("users", userService.findAllUsers());
             model.addAttribute("roles", roleService.findAllRoles());
 
