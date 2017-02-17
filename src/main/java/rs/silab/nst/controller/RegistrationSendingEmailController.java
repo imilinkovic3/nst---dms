@@ -1,15 +1,11 @@
 package rs.silab.nst.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import rs.silab.nst.email.Email;
 import rs.silab.nst.email.EmailConfiguration;
 import rs.silab.nst.email.EmailService;
@@ -21,7 +17,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Controller
 @Scope("session")
@@ -31,8 +26,8 @@ public class RegistrationSendingEmailController {
     @Resource(name = "userService")
     UserService userService;
 
-    @RequestMapping(value = {"/confirmregistration/"}, method = RequestMethod.POST)
-    public String confrimRregistration(@Validated User user, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/confirmregistration/", method = RequestMethod.POST)
+    public String confrimRregistration(@RequestBody final User user, HttpServletRequest request, HttpServletResponse response) {
         try {
             User doubleUser = userService.findByEmail(user.getEmail());
             if (doubleUser != null) {
@@ -55,6 +50,7 @@ public class RegistrationSendingEmailController {
         configuration.setProperty(EmailConfiguration.SMTP_TLS_ENABLE, "true");
         configuration.setProperty(EmailConfiguration.SMTP_AUTH_USER, "nstprojekat@gmail.com");
         configuration.setProperty(EmailConfiguration.SMTP_AUTH_PWD, "nstprojekat2017");
+
 
         EmailService emailService = new EmailService(configuration);
         Email email = new Email();

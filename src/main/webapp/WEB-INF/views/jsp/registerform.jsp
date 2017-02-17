@@ -15,10 +15,6 @@
                     placeholder="Lastname" id="lastname" tabindex="1"
                     class="form-control" value=""/>
     </div>
-    <div class="form-group">
-        <form:select path="roles" items="${roles}" multiple="true"
-                     itemValue="id" itemLabel="name" id="roles" class="form-control input-sm"/>
-    </div>
     <div class="control-group error" id="emailError"></div>
     <div class="form-group">
         <form:input path="email" type="email" name="email"
@@ -33,20 +29,21 @@
         <form:input path="password" type="password" name="password" placeholder="Password"
                     id="password" tabindex="2" class="form-control"/>
     </div>
-    <div class="form-group">
-        <form:input path="" type="password" name="confirmPassword"
-                    placeholder="Confirm password" id="confirmPassword" tabindex="2"
-                    class="form-control"/>
-    </div>
+    <%--<div class="form-group">--%>
+    <%--<form:input path="" type="password" name="confirmPassword"--%>
+    <%--placeholder="Confirm password" id="confirmPassword" tabindex="2"--%>
+    <%--class="form-control"/>--%>
+    <%--</div>--%>
 
     <%@include file="companyform.tag" %>
 
     <div class="form-group">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
-                <form:button path="register-submit" type="button"
-                             id="register-submit" tabindex="4"
-                             class="form-control btn btn-register">REGISTER</form:button>
+                <button path="register-submit" type="button"
+                        id="register-submit" tabindex="4"
+                        class="form-control btn btn-register" onclick="sendAjax()">REGISTER
+                </button>
             </div>
         </div>
     </div>
@@ -55,22 +52,3 @@
 
     </div>
 </form:form>
-
-<script type="text/javascript"
-        src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
-    $("#register-submit").click(function () {
-        var user = $('#register-form').serialize();
-        $.ajax({
-            type: "POST",
-            url: "/nst/confirmregistration/",
-            data: user,
-            success: function (data) {
-                $('#mainBody').html(data);
-            },
-            error: function () {
-                $('#emailError').html("User with this email already exists");
-            }
-        });
-    });
-</script>

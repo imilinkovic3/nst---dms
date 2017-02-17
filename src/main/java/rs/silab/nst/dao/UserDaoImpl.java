@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import rs.silab.nst.model.User;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 
 @Repository("userDao")
@@ -86,5 +87,13 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         } catch (NoResultException ex) {
             return null;
         }
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        List<User> users = getEntityManager()
+                .createQuery("SELECT u FROM User u ORDER BY u.firstname ASC")
+                .getResultList();
+        return users;
     }
 }

@@ -49,8 +49,9 @@
 <script type="text/javascript"
         src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    <%--<%@include file="../../../js/registerValidation.js"%>--%>
+    <%@include file="../../../js/registerValidation.js"%>
     <%@include file="../../../js/login.js"%>
+    <%@include file="../../../js/registerFormSubmit.js"%>
 </script>
 
 </html>

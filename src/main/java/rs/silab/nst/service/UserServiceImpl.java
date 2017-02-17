@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import rs.silab.nst.dao.UserDao;
 import rs.silab.nst.model.User;
 
+import java.util.List;
+
 
 @Service("userService")
 @Transactional
@@ -66,6 +68,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
         return userDao.findByEmail(email);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userDao.findAllUsers();
     }
 
 }

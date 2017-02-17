@@ -3,10 +3,8 @@ package rs.silab.nst.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.List;
 
 @Entity
 @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c")
@@ -29,9 +27,6 @@ public class Company implements Serializable {
     private String phone;
 
     private BigInteger postalcode;
-
-    @OneToMany(mappedBy = "companyBean")
-    private List<User> users;
 
     public Company() {
     }
@@ -100,28 +95,6 @@ public class Company implements Serializable {
         this.postalcode = postalcode;
     }
 
-    public List<User> getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public User addUser(User user) {
-        getUsers().add(user);
-        user.setCompanyBean(this);
-
-        return user;
-    }
-
-    public User removeUser(User user) {
-        getUsers().remove(user);
-        user.setCompanyBean(null);
-
-        return user;
-    }
-
     @Override
     public String toString() {
         return "Company{" +
@@ -132,8 +105,6 @@ public class Company implements Serializable {
                 ", fax='" + fax + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                ", postalcode=" + postalcode +
-                ", users=" + users +
-                '}';
+                ", postalcode=" + postalcode + '}';
     }
 }

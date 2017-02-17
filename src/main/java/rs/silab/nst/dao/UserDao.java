@@ -2,6 +2,8 @@ package rs.silab.nst.dao;
 
 import rs.silab.nst.model.User;
 
+import java.util.List;
+
 
 public interface UserDao {
 
@@ -18,5 +20,7 @@ public interface UserDao {
     User findByUsername(User user);
 
     User findByEmail(String email);
+
+    List<User> findAllUsers();
 }
 
