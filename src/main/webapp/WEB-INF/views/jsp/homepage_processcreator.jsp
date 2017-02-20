@@ -12,10 +12,7 @@
 </head>
 <body>
 <div class="container">
-    PROCESS CREATOR*********************
+    PROCESS CREATOR PAGE
 </div>
 </body>
-
-
-
 </html>

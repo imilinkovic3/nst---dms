@@ -14,11 +14,17 @@ import java.util.List;
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
     public User findById(int id) {
-        User user = getByKey(id);
-
-        return user;
+        try {
+            User user = (User) getEntityManager()
+                    .createQuery("SELECT u FROM User u WHERE u.id LIKE :id")
+                    .setParameter("id", id)
+                    .getSingleResult();
+            return user;
+        } catch (NoResultException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
-//
 //    public User findBySSO(String sso) {
 //        System.out.println("SSO : " + sso);
 //        try {
@@ -33,7 +39,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 //        }
 //    }
 //
-   @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public List<User> findAllUsers() {
         List<User> users = getEntityManager()
                 .createQuery("SELECT u FROM User u ORDER BY u.firstname ASC")
@@ -44,8 +50,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
     public void save(User user) {
         persist(user);
     }
-
-
 
 //    public void deleteBySSO(String sso) {
 //        User user = (User) getEntityManager()
@@ -66,8 +70,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
     @Override
     public User findByUsername(User user) {
-
-        System.out.println("user iz dao klase : " + user);
         try {
             User u = (User) getEntityManager()
                     .createQuery("SELECT u FROM User u WHERE u.username LIKE :username")
@@ -75,11 +77,32 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
                     .getSingleResult();
             return u;
         } catch (NoResultException ex) {
-           System.out.print("usao u catch");
+            System.out.print("usao u catch");
             return null;
         }
+    }
 
+    @Override
+    public User findByEmail(User user) {
+        try {
+            User u = (User) getEntityManager()
+                    .createQuery("SELECT u FROM User u WHERE u.email LIKE :email")
+                    .setParameter("email", user.getEmail())
+                    .getSingleResult();
+            return u;
+        } catch (NoResultException ex) {
+            System.out.print("usao u catch email");
+            return null;
+        }
+    }
 
+    @Override
+    public void deleteUser(Integer id) {
+        User user = (User) getEntityManager()
+                .createQuery("SELECT u FROM User u WHERE u.id LIKE :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        delete(user);
     }
 
     @Override

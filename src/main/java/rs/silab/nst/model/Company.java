@@ -4,6 +4,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import java.io.Serializable;
 import java.math.BigInteger;
+
 @Entity
 @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c")
 public class Company implements Serializable {
@@ -17,6 +18,7 @@ public class Company implements Serializable {
     private String name;
     private String phone;
     private BigInteger postalcode;
+  
     public Company() {
     }
     public String getPib() {
@@ -67,6 +69,7 @@ public class Company implements Serializable {
     public void setPostalcode(BigInteger postalcode) {
         this.postalcode = postalcode;
     }
+
     @Override
     public String toString() {
         return "Company{" +

@@ -4,6 +4,7 @@ import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
 @Entity
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User implements Serializable {
@@ -20,10 +21,11 @@ public class User implements Serializable {
     @JoinColumn(name = "company")
     @Cascade(value = CascadeType.ALL)
     private Company companyBean;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {
-            @JoinColumn(name = "role_id")})
+    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<Role> roles;
+
     public User() {
     }
     public int getId() {
@@ -68,9 +70,11 @@ public class User implements Serializable {
     public void setCompanyBean(Company companyBean) {
         this.companyBean = companyBean;
     }
+
     public List<Role> getRoles() {
         return this.roles;
     }
+
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
