@@ -61,16 +61,18 @@ public class LoginRegistrationController {
     }
 
     @RequestMapping(value = {"/login/"}, method = RequestMethod.POST)
-    public String login(@RequestBody User user, BindingResult result, ModelMap model) {
+    public String login(@Validated User user, BindingResult result, ModelMap model) {
         User u = userService.findByUsername(user);
         if (u != null && u.getPassword().equals(user.getPassword())) {
             model.addAttribute("users", userService.findAllUsers());
             model.addAttribute("roles", roleService.findAllRoles());
+            model.addAttribute("currentUser", u);
 
             // ???
             for (Role role : u.getRoles()) {
                 if (role.getName().equalsIgnoreCase("admin")) {
-                    return "homepage_admin";
+                    //return "homepage_admin";
+                    return "header";
                 }
             }
 

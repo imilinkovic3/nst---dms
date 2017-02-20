@@ -12,7 +12,6 @@
                 <td id="firstname_row${user.id}">${user.firstname}</td>
                 <td id="lastname_row${user.id}">${user.lastname}</td>
                 <td id="username_row${user.id}">${user.username}</td>
-
                 <td class="btn-group-xs btn-group-horizontal">
                     <input type="button" id="edit_button${user.id}" value="Edit"
                            class="edit btn btn-primary btn-xs"
