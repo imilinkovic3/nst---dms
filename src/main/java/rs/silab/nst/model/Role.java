@@ -1,7 +1,9 @@
 package rs.silab.nst.model;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
 @Entity
 @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
 public class Role implements Serializable {
@@ -10,8 +12,7 @@ public class Role implements Serializable {
     private int id;
     private String name;
     private String title;
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
-    private List<User> users;
+
     public Role() {
     }
     public int getId() {
@@ -32,10 +33,12 @@ public class Role implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    public List<User> getUsers() {
-        return this.users;
-    }
-    public void setUsers(List<User> users) {
-        this.users = users;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' + '}';
     }
 }

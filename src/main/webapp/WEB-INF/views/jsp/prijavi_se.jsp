@@ -12,7 +12,7 @@
     </style>
     <title>Login</title>
 </head>
-<body>
+<body id="mainBody">
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -51,12 +51,9 @@
 <script type="text/javascript"
         src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    <%--<%@include file="../../../js/registerValidation.js"%>--%>
+    <%@include file="../../../js/registerValidation.js"%>
     <%@include file="../../../js/login.js"%>
-</script>
-<script>
+    <%@include file="../../../js/registerFormSubmit.js"%>
     <%@include file="../../../js/forgotPasswordPopup.js" %>
-
 </script>
-
 </html>

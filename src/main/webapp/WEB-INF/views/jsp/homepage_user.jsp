@@ -12,10 +12,7 @@
 </head>
 <body>
 <div class="container">
-    USER*********************
+    USER PAGE
 </div>
 </body>
-
-
-
 </html>

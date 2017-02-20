@@ -11,16 +11,9 @@
     <title>Login</title>
 </head>
 <body>
-<div >
-
-
+<div>
     <%@include file="user_creation.jsp" %>
     <%@include file="company_information.jsp" %>
-
-
 </div>
 </body>
-
-
-
 </html>
