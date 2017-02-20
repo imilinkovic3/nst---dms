@@ -11,9 +11,8 @@
     <title>Login</title>
 </head>
 <body>
-<div>
-    <%@include file="user_creation.jsp" %>
-    <%@include file="company_information.jsp" %>
+<div class="container">
+    PROCESS CREATOR PAGE
 </div>
 </body>
 </html>

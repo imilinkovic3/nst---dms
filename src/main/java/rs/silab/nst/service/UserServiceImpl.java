@@ -16,49 +16,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    //    public User findById(int id) {
-//        return dao.findById(id);
-//    }
-//
-//    public User findBySSO(String sso) {
-//        User user = dao.findBySSO(sso);
-//        return user;
-//    }
-//
     public void saveUser(User user) {
         userDao.save(user);
     }
-//
-//    /*
-//     * Since the method is running with Transaction, No need to call hibernate update explicitly.
-//     * Just fetch the entity from db and update it with proper values within transaction.
-//     * It will be updated in db once transaction ends.
-//     */
-//    public void updateUser(User user) {
-////		User entity = dao.findById(user.getId());
-////		if(entity!=null){
-////			entity.setSsoId(user.getSsoId());
-////			entity.setPassword(user.getPassword());
-////			entity.setFirstName(user.getFirstName());
-////			entity.setLastName(user.getLastName());
-////			entity.setEmail(user.getEmail());
-////			entity.setUserProfiles(user.getUserProfiles());
-////		}
-//    }
-//
-//
-//    public void deleteUserBySSO(String sso) {
-//        dao.deleteBySSO(sso);
-//    }
-//
-//    public List<User> findAllUsers() {
-//        return dao.findAllUsers();
-//    }
-//
-//    public boolean isUserSSOUnique(Integer id, String sso) {
-//        User user = findBySSO(sso);
-//        return (user == null || ((id != null) && (user.getId() == id)));
-//    }
 
     @Override
     public User findByUsername(User user) {
@@ -66,13 +26,41 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public User findByEmail(User user) {
+        return userDao.findByEmail(user);
     }
 
     @Override
     public List<User> findAllUsers() {
         return userDao.findAllUsers();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        if (user.getId() != 0) {
+            User entity = userDao.findById(user.getId());
+
+            if (entity != null) {
+                entity.setEmail(user.getEmail());
+                entity.setFirstname(user.getFirstname());
+                entity.setLastname(user.getLastname());
+                entity.setUsername(user.getUsername());
+//            entity.setRoles(user.getRoles());
+            }
+            userDao.save(entity);
+        } else {
+            userDao.save(user);
+        }
+    }
+
+    @Override
+    public void deleteUser(Integer id) {
+        userDao.deleteUser(id);
+    }
+
+    @Override
+    public User findById(Integer id) {
+        return userDao.findById(id);
     }
 
 }

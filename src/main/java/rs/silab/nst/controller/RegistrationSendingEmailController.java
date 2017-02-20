@@ -1,15 +1,20 @@
 package rs.silab.nst.controller;
 
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import rs.silab.nst.email.Email;
 import rs.silab.nst.email.EmailConfiguration;
 import rs.silab.nst.email.EmailService;
 import rs.silab.nst.model.User;
+import rs.silab.nst.service.LoadDataService;
 import rs.silab.nst.service.UserService;
 
 import javax.annotation.Resource;
@@ -17,6 +22,9 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 @Scope("session")
@@ -26,21 +34,62 @@ public class RegistrationSendingEmailController {
     @Resource(name = "userService")
     UserService userService;
 
-    @RequestMapping(value = "/confirmregistration/", method = RequestMethod.POST)
-    public String confrimRregistration(@RequestBody final User user, HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = {"/confirmregistration/"}, method = RequestMethod.POST)
+    public String confrimRregistration(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            User doubleUser = userService.findByEmail(user.getEmail());
+            User doubleUser = userService.findByEmail(user);
             if (doubleUser != null) {
                 response.setStatus(400);
-                return "";
+                return "prijavi_se";
             }
             sendConfirmationEmail(request);
         } catch (MessagingException e) {
             e.printStackTrace();
             return "prijavi_se";
         }
-
         return "confirm_registration";
+    }
+
+    @RequestMapping(value = {"/forgetpassword/"}, method = RequestMethod.POST)
+    public String forgetPassword(@RequestParam("emailOrUsername") String emailOrUsername, @ModelAttribute("user") User employee, BindingResult result) {
+        // Mora da stoji modelAttribute u ulaznim parametrima! Ne brisati!
+        User user = new User();
+        user.setEmail(emailOrUsername);
+        user.setUsername(emailOrUsername);
+        User foundUser = userService.findByEmail(user);
+        if (foundUser == null) {
+            foundUser = userService.findByUsername(user);
+        }
+        if (foundUser == null) {
+            return "prijavi_se";
+        }
+
+        try {
+            sendResetPasswordEmail(foundUser);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return "prijavi_se";
+        }
+
+        return "prijavi_se";
+    }
+
+    private void sendResetPasswordEmail(User user) throws AddressException, MessagingException {
+        EmailConfiguration configuration = new EmailConfiguration();
+        configuration.setProperty(EmailConfiguration.SMTP_HOST, "smtp.gmail.com");
+        configuration.setProperty(EmailConfiguration.SMTP_AUTH, "true");
+        configuration.setProperty(EmailConfiguration.SMTP_TLS_ENABLE, "true");
+        configuration.setProperty(EmailConfiguration.SMTP_AUTH_USER, "nstprojekat@gmail.com");
+        configuration.setProperty(EmailConfiguration.SMTP_AUTH_PWD, "nstprojekat2017");
+        EmailService emailService = new EmailService(configuration);
+
+        Email email = new Email();
+        email.setFrom("kuzma.fon@gmail.com");
+        email.setTo(user.getEmail());
+        email.setSubject("Register confirmation");
+        email.setText("Your username is: " + user.getUsername() + " ,and your password is: " + user.getPassword());
+        email.setMimeType("text/html");
+        emailService.sendEmail(email);
     }
 
     public void sendConfirmationEmail(HttpServletRequest request) throws AddressException, MessagingException {
@@ -50,16 +99,14 @@ public class RegistrationSendingEmailController {
         configuration.setProperty(EmailConfiguration.SMTP_TLS_ENABLE, "true");
         configuration.setProperty(EmailConfiguration.SMTP_AUTH_USER, "nstprojekat@gmail.com");
         configuration.setProperty(EmailConfiguration.SMTP_AUTH_PWD, "nstprojekat2017");
-
-
         EmailService emailService = new EmailService(configuration);
+
         Email email = new Email();
         email.setFrom("kuzma.fon@gmail.com");
         email.setTo("kuzma.fon@gmail.com");
 
         int confirmationCode = (int) Math.round(Math.random() * 10000);
-        System.out.println("conf code" + confirmationCode);
-        request.getSession().setAttribute("ConfirmationCode", confirmationCode);
+        request.getSession().setAttribute("confirmationcode", confirmationCode);
 
         email.setSubject("Register confirmation");
         email.setText("Please, confirm your registretion with folowing code " + confirmationCode);
@@ -67,5 +114,4 @@ public class RegistrationSendingEmailController {
 
         emailService.sendEmail(email);
     }
-
 }

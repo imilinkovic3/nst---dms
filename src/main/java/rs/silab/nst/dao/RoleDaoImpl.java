@@ -7,13 +7,11 @@ import java.util.List;
 
 @Repository("roleDao")
 public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao {
-
-    @SuppressWarnings("unchecked")
+    @Override
     public List<Role> findAllRoles() {
         List<Role> roles = getEntityManager()
                 .createQuery("SELECT r FROM Role r ORDER BY r.name ASC")
                 .getResultList();
         return roles;
     }
-
 }

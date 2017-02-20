@@ -16,8 +16,8 @@ public class Role implements Serializable {
 
     private String title;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
-    private List<User> users;
+//    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
+//    private List<User> users;
 
     public Role() {
     }
@@ -46,13 +46,13 @@ public class Role implements Serializable {
         this.title = title;
     }
 
-    public List<User> getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+//    public List<User> getUsers() {
+//        return this.users;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
 
     @Override
     public String toString() {

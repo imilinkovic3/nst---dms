@@ -52,6 +52,6 @@
     <%@include file="../../../js/registerValidation.js"%>
     <%@include file="../../../js/login.js"%>
     <%@include file="../../../js/registerFormSubmit.js"%>
+    <%@include file="../../../js/forgotPasswordPopup.js" %>
 </script>
-
 </html>

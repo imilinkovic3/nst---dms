@@ -24,6 +24,7 @@ function transformRegisterFormToJson() {
     return dataUser;
 }
 function sendAjax() {
+    // if ($('#register-form').valid()) {
     $.ajax({
         url: "/nst/confirmregistration/",
         type: 'POST',
@@ -33,7 +34,17 @@ function sendAjax() {
             $('#mainBody').html(data);
         },
         error: function (data, status, er) {
+            console.log(data + status + er);
             $('#emailError').html("Account with this email already exists");
         }
     });
+    // }
 }
+
+// Trigger button on enter
+$(document).ready(function(){
+    $('#register-form').keypress(function(e){
+        if(e.keyCode==13)
+            $('#register-submit').click();
+    });
+});
