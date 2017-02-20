@@ -62,11 +62,13 @@ public class LoginRegistrationController {
           if (u!=null && u.getPassword().equals(user.getPassword())) {
             model.addAttribute("users", userService.findAllUsers());
             model.addAttribute("roles", roleService.findAllRoles());
+              model.addAttribute("currentUser", u);
 
             for (Role role:u.getRoles()) {
                 if (role.getName().equalsIgnoreCase("admin")) {
 
-                    return "homepage_admin";
+                    return "header";
+                   // return "homepage_admin";
                 }
             }
 
