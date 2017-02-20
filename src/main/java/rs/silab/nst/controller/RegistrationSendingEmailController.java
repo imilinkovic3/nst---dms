@@ -1,20 +1,14 @@
 package rs.silab.nst.controller;
 
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.silab.nst.email.Email;
 import rs.silab.nst.email.EmailConfiguration;
 import rs.silab.nst.email.EmailService;
 import rs.silab.nst.model.User;
-import rs.silab.nst.service.LoadDataService;
 import rs.silab.nst.service.UserService;
 
 import javax.annotation.Resource;
@@ -23,8 +17,6 @@ import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 @Controller
 @Scope("session")
@@ -106,6 +98,7 @@ public class RegistrationSendingEmailController {
         email.setTo("kuzma.fon@gmail.com");
 
         int confirmationCode = (int) Math.round(Math.random() * 10000);
+
         request.getSession().setAttribute("confirmationcode", confirmationCode);
 
         email.setSubject("Register confirmation");

@@ -7,6 +7,8 @@
     <style type="text/css">
         <%@include file="../bootstrap/css/bootstrap-login.css"%>
         <%@include file="../bootstrap/css/bootstrap.css"%>
+        <%@include file="../bootstrap/css/userinformation-popup.css"%>
+
     </style>
     <title>Login</title>
 </head>
