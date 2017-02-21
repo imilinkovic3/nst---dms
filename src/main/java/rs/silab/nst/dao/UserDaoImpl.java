@@ -105,16 +105,4 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         delete(user);
     }
 
-    @Override
-    public User findByEmail(User user) {
-        try {
-            User u = (User) getEntityManager()
-                    .createQuery("SELECT u FROM User u WHERE u.email LIKE :email")
-                    .setParameter("email", user.getEmail())
-                    .getSingleResult();
-            return u;
-        } catch (NoResultException ex) {
-            System.out.print("usao u catch email");
-            return null;
-        }    }
 }
