@@ -16,6 +16,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -27,7 +28,11 @@ public class RegistrationSendingEmailController {
     UserService userService;
 
     @RequestMapping(value = {"/confirmregistration/"}, method = RequestMethod.POST)
-    public String confrimRregistration(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String confrimRregistration(@RequestBody User user, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+        if (session.getAttribute("sessionUser") == null) {
+            return "redirect:/nst/";
+        }
+
         try {
             User doubleUser = userService.findByEmail(user);
             if (doubleUser != null) {
@@ -43,7 +48,11 @@ public class RegistrationSendingEmailController {
     }
 
     @RequestMapping(value = {"/forgetpassword/"}, method = RequestMethod.POST)
-    public String forgetPassword(@RequestParam("emailOrUsername") String emailOrUsername, @ModelAttribute("user") User employee, BindingResult result) {
+    public String forgetPassword(@RequestParam("emailOrUsername") String emailOrUsername, @ModelAttribute("user") User employee, HttpSession session) {
+        if (session.getAttribute("sessionUser") == null) {
+            return "redirect:/nst/";
+        }
+
         // Mora da stoji modelAttribute u ulaznim parametrima! Ne brisati!
         User user = new User();
         user.setEmail(emailOrUsername);

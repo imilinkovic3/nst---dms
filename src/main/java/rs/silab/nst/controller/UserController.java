@@ -11,6 +11,7 @@ import rs.silab.nst.service.RoleService;
 import rs.silab.nst.service.UserService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -30,13 +31,21 @@ public class UserController {
 
 
     @RequestMapping(value = {"/editUser/"}, method = RequestMethod.POST)
-    public String editUser(@RequestBody User user) throws IOException {
+    public String editUser(@RequestBody User user, HttpSession session) throws IOException {
+        if (session.getAttribute("sessionUser") == null) {
+            return "redirect:/nst/";
+        }
+
         userService.updateUser(user);
         return "homepage_admin";
     }
 
     @RequestMapping(value = {"/selectedUser/"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody User selectUser(Integer id) {
+    public @ResponseBody User selectUser(Integer id, HttpSession session) {
+        if (session.getAttribute("sessionUser") == null) {
+            return null;
+        }
+
         User selectedUser = userService.findById(id);
         return selectedUser;
     }

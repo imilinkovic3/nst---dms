@@ -11,7 +11,7 @@ function add_row() {
     var new_username = document.getElementById("new_username").value;
 
     if (!new_firstname) {
-        $('#new_firstname_error').html("Please provide firstname");
+        $('#new_firstname_error').html("* Please provide firstname").delay(1000).fadeOut();
         $('#new_firstname_error').show();
         return;
     } else {
@@ -19,7 +19,7 @@ function add_row() {
     }
 
     if (!new_lastname) {
-        $('#new_lastname_error').html("Please provide lastname");
+        $('#new_lastname_error').html("* Please provide lastname").delay(1000).fadeOut();
         $('#new_lastname_error').show();
         return;
     } else {
@@ -27,7 +27,7 @@ function add_row() {
     }
 
     if (!new_username) {
-        $('#new_username_error').html("Please provide username");
+        $('#new_username_error').html("* Please provide username").delay(1000).fadeOut();
         $('#new_username_error').show();
         return;
     } else {

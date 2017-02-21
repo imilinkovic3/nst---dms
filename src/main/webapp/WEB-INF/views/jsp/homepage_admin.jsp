@@ -10,8 +10,10 @@
     </style>
     <title>Login</title>
 </head>
-<body>
+<body class="homepage">
 <div>
+    <%@ include file="header.jsp"%>
+    <%@ include file="footer.jsp"%>
     <%@include file="user_creation.jsp" %>
     <%@include file="company_information.jsp" %>
 </div>
