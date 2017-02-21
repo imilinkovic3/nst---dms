@@ -1,10 +1,14 @@
 // When the user clicks on <div>, open the popup, Get the modal
 var modalInformations = document.getElementById('userInformationsPopup');
 var modalConfirmation = document.getElementById('editConfirmationPopup');
+
+
 // Get the <span> element that closes the modal
 var spanInformationPopup = document.getElementById("closeInformationsPopup");
+
 // Get the <span> element that closes the modal
 var spanConfirmationPopup = document.getElementById("closeEditConfirmationPopup");
+
 // When the user clicks on the button, open the modal
 function edit(id) {
     getSelectedUser(id);
@@ -13,6 +17,7 @@ function edit(id) {
     document.getElementById("confirmationType").value = "edit";
     modalInformations.style.display = "block";
 }
+
 // Trigger button on enter
 $(document).ready(function () {
     $('#edit-form').keypress(function (e) {
@@ -20,6 +25,7 @@ $(document).ready(function () {
             $('#edit-submit').click();
     });
 });
+
 function getSelectedUser(id) {
     $.ajax({
         url: "/nst/login/selectedUser/",
@@ -29,6 +35,7 @@ function getSelectedUser(id) {
         cache: false,
         success: function (selectedUser) {
             document.getElementById('user_id_value').value = selectedUser.id;
+
             if (selectedUser.companyBean != null) {
                 document.getElementById('user_company_value').value = selectedUser.companyBean.name;
             }
@@ -37,6 +44,7 @@ function getSelectedUser(id) {
             document.getElementById('user_email_edit').value = selectedUser.email;
             document.getElementById('user_username_edit').value = selectedUser.username;
             document.getElementById('leftCorner').value = selectedUser.id + " - " + selectedUser.firstname + " " + selectedUser.lastname;
+
             return selectedUser;
         },
         error: function (data, status, er) {
@@ -44,9 +52,13 @@ function getSelectedUser(id) {
         }
     });
 }
+
+
+
 function saveEditing() {
     modalConfirmation.style.display = "block";
 }
+
 function transformEditUserFormToJson() {
     var dataUser = JSON.stringify({
         "id": document.getElementById('user_id_value').value,
@@ -60,6 +72,7 @@ function transformEditUserFormToJson() {
     });
     return dataUser;
 }
+
 function editUser() {
     var user = transformEditUserFormToJson();
     $.ajax({
@@ -78,6 +91,7 @@ function editUser() {
         }
     });
 }
+
 function deleteUser() {
     var id = document.getElementById("rowId").value;
     $.ajax({
@@ -95,6 +109,7 @@ function deleteUser() {
         }
     });
 }
+
 function editConfirmationYes() {
     var confirmationType = document.getElementById('confirmationType').value;
     if (confirmationType === "edit") {
@@ -107,6 +122,7 @@ function editConfirmationYes() {
     modalConfirmation.style.display = "none";
     modalInformations.style.display = "none";
 }
+
 function editConfirmationNo() {
     modalConfirmation.style.display = "none";
 }
@@ -115,6 +131,7 @@ spanInformationPopup.onclick = function () {
     document.getElementById("edit-form").reset();
     modalInformations.style.display = "none";
 }
+
 spanConfirmationPopup.onclick = function () {
     modalConfirmation.style.display = "none";
 }
@@ -125,4 +142,5 @@ window.onclick = function (event) {
     } else if ((event.target == modalConfirmation)) {
         modalConfirmation.style.display = "none";
     }
+
 }
