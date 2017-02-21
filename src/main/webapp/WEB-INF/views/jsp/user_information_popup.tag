@@ -2,7 +2,6 @@
     <div class="modal-content">
         <span class="close" id="closeInformationsPopup">X</span>
         <input id="leftCorner" style="border:0px;" readonly="true"/>
-
         <form:form id="edit-form" modelAttribute="user">
             <hidden id="roles"/>
             <table align='center' id="user_information_table">
@@ -59,16 +58,12 @@
                     <td class="form-group">
                         <output class="text-info" type="text" id="user_roles">Roles:</output>
                     </td>
-
                     <td class="form-group">
                         <select multiple="true" itemValue="id" itemLabel="name" id="roleSelect" class="form-control input-sm"/>
                     </td>
-
-                    <%--<form:select path="roles" id="roles">--%>
+                        <%--<form:select path="roles" id="roles">--%>
                         <%--&lt;%&ndash;<form:option cssClass="none" value="${roles[0].name}">${roles[0].name}</form:option>&ndash;%&gt;--%>
-                    <%--</form:select>--%>
-
-
+                        <%--</form:select>--%>
                         <%--<td class="form-group">--%>
                         <%--<c:forEach items="${roles}" var="role">--%>
                         <%--<c:choose>--%>
@@ -88,5 +83,4 @@
         </form:form>
     </div>
 </div>
-
 <%@ include file="confirmation_popup.tag" %>

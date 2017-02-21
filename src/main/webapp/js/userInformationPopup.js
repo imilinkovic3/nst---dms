@@ -2,6 +2,7 @@
 var modalInformations = document.getElementById('userInformationsPopup');
 var modalConfirmation = document.getElementById('editConfirmationPopup');
 
+
 // Get the <span> element that closes the modal
 var spanInformationPopup = document.getElementById("closeInformationsPopup");
 
@@ -51,6 +52,7 @@ function getSelectedUser(id) {
         }
     });
 }
+
 
 
 function saveEditing() {
@@ -124,7 +126,6 @@ function editConfirmationYes() {
 function editConfirmationNo() {
     modalConfirmation.style.display = "none";
 }
-
 // When the user clicks on <span> (x), close the modal
 spanInformationPopup.onclick = function () {
     document.getElementById("edit-form").reset();
@@ -134,7 +135,6 @@ spanInformationPopup.onclick = function () {
 spanConfirmationPopup.onclick = function () {
     modalConfirmation.style.display = "none";
 }
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modalInformations) {
@@ -142,4 +142,5 @@ window.onclick = function (event) {
     } else if ((event.target == modalConfirmation)) {
         modalConfirmation.style.display = "none";
     }
+
 }

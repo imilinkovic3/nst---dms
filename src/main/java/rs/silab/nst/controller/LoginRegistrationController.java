@@ -79,6 +79,7 @@ public class LoginRegistrationController {
     }
 
     @RequestMapping(value = {"/login/"}, method = RequestMethod.POST)
+
     public String login(@Validated User user, BindingResult result, ModelMap model, HttpSession session) {
         User u = userService.findByUsername(user);
         session.setAttribute("sessionUser", u);
@@ -91,6 +92,7 @@ public class LoginRegistrationController {
 
             for (Role role : u.getRoles()) {
                 if (role.getName().equalsIgnoreCase("admin")) {
+
                     System.out.println("usao 2");
                     return "homepage_admin";
                 }

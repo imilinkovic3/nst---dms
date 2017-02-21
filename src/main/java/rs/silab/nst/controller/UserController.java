@@ -11,23 +11,22 @@ import rs.silab.nst.service.RoleService;
 import rs.silab.nst.service.UserService;
 
 import javax.annotation.Resource;
+
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
  * Created by milinkoi on 11.02.2017.
  */
-
 @Controller
 @Scope("session")
 @RequestMapping("/nst/login")
 public class UserController {
-
     @Resource(name = "roleService")
     RoleService roleService;
-
     @Resource(name = "userService")
     UserService userService;
+
 
 
     @RequestMapping(value = {"/editUser/"}, method = RequestMethod.POST)

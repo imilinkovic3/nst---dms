@@ -10,6 +10,7 @@ function add_row() {
     var new_lastname = document.getElementById("new_lastname").value;
     var new_username = document.getElementById("new_username").value;
 
+
     if (!new_firstname) {
         $('#new_firstname_error').html("* Please provide firstname").delay(1000).fadeOut();
         $('#new_firstname_error').show();
@@ -17,6 +18,7 @@ function add_row() {
     } else {
         $('#new_firstname_error').hide();
     }
+
 
     if (!new_lastname) {
         $('#new_lastname_error').html("* Please provide lastname").delay(1000).fadeOut();
@@ -26,6 +28,7 @@ function add_row() {
         $('#new_lastname_error').hide();
     }
 
+
     if (!new_username) {
         $('#new_username_error').html("* Please provide username").delay(1000).fadeOut();
         $('#new_username_error').show();
@@ -33,6 +36,7 @@ function add_row() {
     } else {
         $('#new_username_error').hide();
     }
+
 
     modalConfirmation.style.display = "block";
 }
