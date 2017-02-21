@@ -10,6 +10,7 @@
 <%@ include file="users_table.tag"%>
 <%@ include file="user_information_popup.tag"%>
 </body>
+
 <script type="text/javascript"
         src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript"

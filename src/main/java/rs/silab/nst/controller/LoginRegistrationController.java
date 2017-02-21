@@ -1,5 +1,6 @@
 package rs.silab.nst.controller;
 
+import org.hibernate.Hibernate;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

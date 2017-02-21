@@ -16,6 +16,7 @@
                     class="form-control" value=""/>
     </div>
     <div class="control-group error" id="emailError"></div>
+
     <div class="form-group">
         <form:input path="email" type="email" name="email"
                     placeholder="Email" id="email" tabindex="1" class="form-control"/>

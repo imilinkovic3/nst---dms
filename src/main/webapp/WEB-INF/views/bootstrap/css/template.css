@@ -1,0 +1,102 @@
+body{
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+.fixed-header, .fixed-footer{
+    width: 100%;
+    position: fixed;
+    background: #161833;
+    color: #fcf9f8;
+}
+.fixed-header{
+    top: 0;
+    height: 10%;
+    line-height: 40px;
+
+}
+
+.fixed-footer{
+    bottom: 0;
+    text-align: center;
+    line-height: 40px;
+    height: 4%;
+
+
+}
+.fixed-content{
+    margin-left: 20%;
+    margin-top: 5%;
+}
+.left-menu {
+    width: 12%;
+    height: 100%;
+    position: fixed;
+    float: left;
+    background: #4a8699;
+    top: 10%;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+nav a{
+    color: #fcf9f8;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.header-right{
+    width: 20%;
+    float: right;
+    top:0;
+    margin-left:80%;
+    position: absolute;
+}
+.one-line{
+    display: inline-block;
+}
+.company-name{
+    width: 50%;
+ text-align: center;
+    align:center;
+    letter-spacing: 4px;
+    word-spacing: 8px;
+    font-style: italic;
+    font-size: 50px;
+    font-family: Arial;
+    line-height: 80px;
+    font-weight: bold;
+    margin-left:20%;
+}
+.link-css{
+    color: #fcf9f8;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 12%;
+    background-color: #4a8699;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    line-height: 35px;
+}
+
+li a {
+    display: block;
+    color: #161833;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: #161833;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #161833;
+    color: white;
+}

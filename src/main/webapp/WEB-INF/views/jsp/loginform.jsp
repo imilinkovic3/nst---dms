@@ -35,8 +35,8 @@
     <div class="form-group text-center">
 
     </div>
+  
 </form:form>
-
 <div id="userInformationsPopup" class="modal">
     <div class="modal-content">
         <span class="close">X</span>

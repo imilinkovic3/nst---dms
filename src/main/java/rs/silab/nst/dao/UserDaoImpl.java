@@ -25,8 +25,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
             return null;
         }
     }
-
-    //
 //    public User findBySSO(String sso) {
 //        System.out.println("SSO : " + sso);
 //        try {
@@ -52,7 +50,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
     public void save(User user) {
         persist(user);
     }
-
 
 //    public void deleteBySSO(String sso) {
 //        User user = (User) getEntityManager()
@@ -107,4 +104,17 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
                 .getSingleResult();
         delete(user);
     }
+
+    @Override
+    public User findByEmail(User user) {
+        try {
+            User u = (User) getEntityManager()
+                    .createQuery("SELECT u FROM User u WHERE u.email LIKE :email")
+                    .setParameter("email", user.getEmail())
+                    .getSingleResult();
+            return u;
+        } catch (NoResultException ex) {
+            System.out.print("usao u catch email");
+            return null;
+        }    }
 }
