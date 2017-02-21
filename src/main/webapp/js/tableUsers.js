@@ -1,51 +1,92 @@
-function edit_row(no)
-{
-    document.getElementById("edit_button"+no).style.display="none";
-    document.getElementById("save_button"+no).style.display="block";
-
-    var firstname=document.getElementById("firstname_row"+no);
-    var username=document.getElementById("username_row"+no);
-    var role=document.getElementById("role_row"+no);
-
-    var firstname_data=firstname.innerHTML;
-    var username_data=username.innerHTML;
-    var role_data=role.innerHTML;
-
-    firstname.innerHTML="<input type='text' id='firstname_text"+no+"' value='"+firstname_data+"'>";
-    username.innerHTML="<input type='text' id='username_text"+no+"' value='"+username_data+"'>";
-    role.innerHTML="<input type='text' id='role_text"+no+"' value='"+role_data+"'>";
+function delete_row(id) {
+    document.getElementById("confirmationType").value = "delete";
+    document.getElementById("rowId").value = id;
+    modalConfirmation.style.display = "block";
 }
 
-function save_row(no)
-{
-    var firstname_val=document.getElementById("firstname_text"+no).value;
-    var username_val=document.getElementById("username_text"+no).value;
-    var role_val=document.getElementById("role_text"+no).value;
+function add_row() {
+    document.getElementById("confirmationType").value = "addRow";
+    var new_firstname = document.getElementById("new_firstname").value;
+    var new_lastname = document.getElementById("new_lastname").value;
+    var new_username = document.getElementById("new_username").value;
 
-    document.getElementById("firstname_row"+no).innerHTML=firstname_val;
-    document.getElementById("username_row"+no).innerHTML=username_val;
-    document.getElementById("role_row"+no).innerHTML=role_val;
+    if (!new_firstname) {
+        $('#new_firstname_error').html("Please provide firstname");
+        $('#new_firstname_error').show();
+        return;
+    } else {
+        $('#new_firstname_error').hide();
+    }
 
-    document.getElementById("edit_button"+no).style.display="block";
-    document.getElementById("save_button"+no).style.display="none";
+    if (!new_lastname) {
+        $('#new_lastname_error').html("Please provide lastname");
+        $('#new_lastname_error').show();
+        return;
+    } else {
+        $('#new_lastname_error').hide();
+    }
+
+    if (!new_username) {
+        $('#new_username_error').html("Please provide username");
+        $('#new_username_error').show();
+        return;
+    } else {
+        $('#new_username_error').hide();
+    }
+
+    modalConfirmation.style.display = "block";
 }
 
-function delete_row(no)
-{
-    document.getElementById("row"+no+"").outerHTML="";
+function save_row() {
+    var new_firstname = document.getElementById("new_firstname").value;
+    var new_username = document.getElementById("new_username").value;
+    var new_lastname = document.getElementById("new_lastname").value;
+
+    // var table = document.getElementById("data_table");
+    // var table_len = (table.rows.length) - 1;
+
+    // Setting value to hidden element of table. We will use this value to recognize which row fit on selected user
+    // document.getElementById("rowId").value = table_len;
+
+    save_new_user(new_firstname, new_lastname, new_username);
+
+    // var row = table.insertRow(table_len).outerHTML =
+    //     "<tr id='row" + table_len + "'>" +
+    //     "<td id='firstname_row" + table_len + "'>" + new_firstname + "</td>" +
+    //     "<td id='lastname_row" + table_len + "'>" + new_lastname + "</td>" +
+    //     "<td id='username_row" + table_len + "'>" + new_username + "</td>" +
+    //     "<td>" +
+    //     " <input type='button' id='edit_button" + table_len + "' value='Edit' class='edit btn btn-primary btn-xs' onclick='edit(" + table_len + ")'>" +
+    //     " <input type='button' value='Delete' class='delete btn btn-primary btn-xs' onclick='delete_row(" + table_len + ")'>" +
+    //     "</td>" +
+    //     "</tr>";
+
+    document.getElementById("new_firstname").value = "";
+    document.getElementById("new_username").value = "";
+    document.getElementById("new_lastname").value = "";
 }
 
-function add_row()
-{
-    var new_firstname=document.getElementById("new_firstname").value;
-    var new_username=document.getElementById("new_username").value;
-    var new_role=document.getElementById("new_role").value;
+function transformRowUserToJson(new_firstname, new_lastname, new_username) {
+    var dataUser = JSON.stringify({
+        "firstname": new_firstname,
+        "lastname": new_lastname,
+        "username": new_username,
+    });
+    return dataUser;
+}
 
-    var table=document.getElementById("data_table");
-    var table_len=(table.rows.length)-1;
-    var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='firstname_row"+table_len+"'>"+new_firstname+"</td><td id='username_row"+table_len+"'>"+new_username+"</td><td id='role_row"+table_len+"'>"+new_role+"</td><td><input type='button' id='edit_button"+table_len+"' value='Edit' class='edit' onclick='edit_row("+table_len+")'> <input type='button' id='save_button"+table_len+"' value='Save' class='save' onclick='save_row("+table_len+")'> <input type='button' value='Delete' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
-
-    document.getElementById("new_firstname").value="";
-    document.getElementById("new_username").value="";
-    document.getElementById("new_role").value="";
+function save_new_user(new_firstname, new_lastname, new_username) {
+    var user = transformRowUserToJson(new_firstname, new_lastname, new_username);
+    $.ajax({
+        url: "/nst/login/editUser/",
+        type: 'POST',
+        data: user,
+        contentType: 'application/json',
+        success: function (data) {
+            location.reload();
+        },
+        error: function (data, status, er) {
+            console.log(data + " " + status + " " + er);
+        }
+    });
 }
